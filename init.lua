@@ -1,1 +1,2 @@
-print("This is my nvim configuration file")
+require("theoddagen.remap")
+print("hello")
