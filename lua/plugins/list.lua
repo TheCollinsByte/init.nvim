@@ -4,7 +4,12 @@ end
 
 return {
 	-- UI
-	
+	{
+		'ellisonleao/gruvbox.nvim',
+		config = load_config('ui.gruvbox'),
+		lazy = false,
+		priority = 1000,
+	},
 	
 	-- Language
 	
