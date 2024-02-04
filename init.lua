@@ -1,2 +1,5 @@
-require("theoddagen.remap")
-print("hello")
+require("core.options")
+require("core.keymaps")
+require("core.functions")
+require("core.autocmd")
+require("plugins.lazy")
