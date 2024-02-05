@@ -1,4 +1,5 @@
 {
+  "dashboard-nvim": { "branch": "master", "commit": "c045eb24334324fb39ad5ede0b5d15a74a5d229e" },
   "gruvbox.nvim": { "branch": "main", "commit": "6e4027ae957cddf7b193adfaec4a8f9e03b4555f" },
   "lazy.nvim": { "branch": "main", "commit": "aedcd79811d491b60d0a6577a9c1701063c2a609" },
   "telescope.nvim": { "branch": "master", "commit": "236083884cfe6c874e03e6cb4e7cb08809c1333c" }
