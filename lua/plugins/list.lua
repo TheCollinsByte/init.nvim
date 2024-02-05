@@ -22,6 +22,13 @@ return {
 		end,
 		cmd = 'Dashboard',
     	},
+
+	{
+		'rcarriga/nvim-notify',
+		config = load_config('ui.notify'),
+		event = 'VeryLazy',
+		cmd = 'Notifications',
+	},
 	
 	-- Language
 	
