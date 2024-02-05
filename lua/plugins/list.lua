@@ -29,6 +29,12 @@ return {
 		event = 'VeryLazy',
 		cmd = 'Notifications',
 	},
+
+	{
+        	'nvim-lualine/lualine.nvim',
+        	config = load_config('ui.lualine'),
+        	event = { 'BufReadPre', 'BufNewFile' },
+    	},
 	
 	-- Language
 	
