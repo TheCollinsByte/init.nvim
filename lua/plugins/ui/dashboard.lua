@@ -18,7 +18,7 @@ dashboard.setup({
 	config = {
 		week_header = {
             		enable = true,
-            		append = { '', icons.ui.Circle .. ' Nvim2K: Learn. Make, Explore! ' .. icons.ui.Circle },
+            		append = { '', icons.ui.Circle .. ' TheOddagen: Learn. Make, Explore! ' .. icons.ui.Circle },
         	},
         	packages = { enable = true }, -- show how many plugins neovim loaded
         	project = { enable = true, limit = 8 },
