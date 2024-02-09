@@ -54,6 +54,11 @@ return {
 		event = { 'BufReadPre', 'BufNewFile' },
 	},
 
+	{
+		'williamboman/mason.nvim',
+		config = load_config('lang.mason'),
+		cmd = 'Mason',
+	},
 
 	-- Completion
 	 
