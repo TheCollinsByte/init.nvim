@@ -35,6 +35,16 @@ return {
         	config = load_config('ui.lualine'),
         	event = { 'BufReadPre', 'BufNewFile' },
     	},
+
+	{
+		'folke/noice.nvim',
+		config = load_config('ui.noice'),
+		event = 'VeryLazy',
+		dependencies = {
+			'MunifTanjim/nui.nvim',
+			'rcarriga/nvim-notify'
+		},
+	},
 	
 	-- Language
 	
