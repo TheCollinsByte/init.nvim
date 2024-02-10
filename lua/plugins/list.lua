@@ -38,12 +38,22 @@ return {
 	
 	-- Language
 	
-	
+
 	-- Treesitter
 	
 
 	-- LSP
-	 
+	{
+		'VonHeikemen/lsp-zero.nvim',
+		branch = 'v3.x',
+		dependencies = {
+		    'neovim/nvim-lspconfig',
+		    'williamboman/mason-lspconfig.nvim',
+		},
+		config = load_config('lang.lsp-zero'),
+		event = { 'BufReadPre', 'BufNewFile' },
+	},
+
 
 	-- Completion
 	 
@@ -52,21 +62,23 @@ return {
 	 
 
 	-- Telescope
-	'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-            {
-                'nvim-telescope/telescope-fzf-native.nvim',
-                build = 'make',
-            },
-            'nvim-telescope/telescope-symbols.nvim',
-            'molecule-man/telescope-menufacture',
-            'debugloop/telescope-undo.nvim',
-            'ThePrimeagen/harpoon',
-        },
-        config = load_config('tools.telescope'),
-        cmd = 'Telescope', 
+	{
+		'nvim-telescope/telescope.nvim',
+		branch = '0.1.x',
+		dependencies = {
+		    'nvim-lua/plenary.nvim',
+		    {
+			'nvim-telescope/telescope-fzf-native.nvim',
+			build = 'make',
+		    },
+		    'nvim-telescope/telescope-symbols.nvim',
+		    'molecule-man/telescope-menufacture',
+		    'debugloop/telescope-undo.nvim',
+		    'ThePrimeagen/harpoon',
+		},
+		config = load_config('tools.telescope'),
+		cmd = 'Telescope', 
+	}
 
 	-- Git
 }
