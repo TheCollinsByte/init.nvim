@@ -16,7 +16,7 @@ vim.g.maplocalleader = ' '
 
 
 -- Split/Pane and Window Navigation
-keymap.set
+
 
 
 -- Window Management
