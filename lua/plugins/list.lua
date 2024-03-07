@@ -52,14 +52,22 @@ return {
 	-- Treesitter
 
 	-- Native LSP
-    {
+	{
 		'neovim/nvim-lspconfig',
-		config = load_config('lang.native-lsp'),
 		lazy = false,
 		priority = 1000,
+		dependencies = {
+				'williamboman/mason.nvim',
+				'williamboman/mason-lspconfig.nvim',
+		},
 	},
 
-	--[[LSP
+	{
+		'williamboman/mason.nvim',
+		config = load_config('lang.mason'),
+		cmd = 'Mason',
+	},
+
 	{
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v3.x',
@@ -71,16 +79,7 @@ return {
 		event = { 'BufReadPre', 'BufNewFile' },
 	},
 
-	{
-		'neovim/nvim-lspconfig',
-		dependencies = {
-				'williamboman/mason.nvim',
-				'williamboman/mason-lspconfig.nvim',
-		},
-		config = load_config('lang.mason'),
-		cmd = 'Mason',
-	},
-	--]]
+
 
 	-- Completion
     {
@@ -128,6 +127,7 @@ return {
 	{
 		'nvim-telescope/telescope.nvim',
 		branch = '0.1.x',
+		lazy = false,
 		dependencies = {
 		    'nvim-lua/plenary.nvim',
 		    {
