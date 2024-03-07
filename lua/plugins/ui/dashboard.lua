@@ -18,7 +18,7 @@ dashboard.setup({
     config = {
         week_header = {
             enable = true,
-            append = { '', icons.ui.Circle .. ' ThePrimeagen: There is always one more bug to fix. ' .. icons.ui.Circle },
+            append = { '', icons.ui.Circle .. ' TheOddagen: There is always one more bug to fix. ' .. icons.ui.Circle },
         },
         packages = { enable = true },
         project = { enable = true, limit = 8 },
