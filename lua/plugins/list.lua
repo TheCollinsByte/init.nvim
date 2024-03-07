@@ -16,6 +16,9 @@ return {
 	{
 		'nvimdev/dashboard-nvim',
 		config = load_config('ui.dashboard'),
+		dependencies = {
+				'nvim-tree/nvim-web-devicons',
+		},
 		-- Only load when no arguments
 		event = function()
 		    if vim.fn.argc() == 0 then
@@ -110,6 +113,10 @@ return {
 
 
 	-- Tools
+	{
+
+	},
+
 	{
 		'epwalsh/obsidian.nvim',
 		version = "*",
