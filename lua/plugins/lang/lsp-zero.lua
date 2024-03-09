@@ -3,6 +3,9 @@ if not status_ok then
 	return
 end
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+
 lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr })
 end)
