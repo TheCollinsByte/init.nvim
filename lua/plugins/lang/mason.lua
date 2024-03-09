@@ -6,6 +6,12 @@ end
 local icons = require('lib.icons')
 
 mason.setup({
+    ensure_installed = {
+	},
+
+	-- auto-install configured server (with lspconfig)
+	automatic_installation = true, 	-- not the same as ensure_installed
+
     -- Where Mason should put its bin location in your PATH. Can be one of:
     -- - "prepend" (default, Mason's bin location is put first in PATH)
     -- - "append" (Mason's bin location is put at the end of PATH)

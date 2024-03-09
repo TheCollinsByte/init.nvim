@@ -56,32 +56,24 @@ return {
 
 	-- Native LSP
 	{
-		'neovim/nvim-lspconfig',
-		lazy = false,
-		priority = 1000,
+		'williamboman/mason.nvim',
 		dependencies = {
-				'williamboman/mason.nvim',
 				'williamboman/mason-lspconfig.nvim',
 		},
-	},
-
-	{
-		'williamboman/mason.nvim',
 		config = load_config('lang.mason'),
 		cmd = 'Mason',
 	},
 
 	{
-		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v3.x',
+		'neovim/nvim-lspconfig',
+		lazy = false,
+		priority = 1000,
 		dependencies = {
-		    'neovim/nvim-lspconfig',
-		    'williamboman/mason-lspconfig.nvim',
+				'williamboman/mason-lspconfig.nvim',
 		},
-		config = load_config('lang.lsp-zero'),
+		config = load_config('lang.lspconfig'),
 		event = { 'BufReadPre', 'BufNewFile' },
 	},
-
 
 
 	-- Completion
