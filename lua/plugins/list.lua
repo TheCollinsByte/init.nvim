@@ -69,7 +69,8 @@ return {
 		lazy = false,
 		priority = 1000,
 		dependencies = {
-				'williamboman/mason-lspconfig.nvim',
+            'hrsh7th/cmp-nvim-lsp',
+			{"antosha417/nvim-lsp-file-operations", config = true},
 		},
 		config = load_config('lang.lspconfig'),
 		event = { 'BufReadPre', 'BufNewFile' },
