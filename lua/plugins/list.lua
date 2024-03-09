@@ -123,9 +123,8 @@ return {
 		dependencies = {
 				'nvim-lua/plenary.nvim',
 		},
-		opts = {
-		},
-	},
+		config = load_config('tools.obsidian'),
+    },
 
 
 	-- Telescope
