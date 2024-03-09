@@ -88,13 +88,13 @@ return {
     {
 		'hrsh7th/nvim-cmp',
 		dependencies = {
+		    'hrsh7th/cmp-buffer',	-- source for text in buffer
+            'hrsh7th/cmp-path',		-- source for file system paths
 			'hrsh7th/nvim-cmp',
             'hrsh7th/cmp-nvim-lsp',
-		    'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
 
-            -- 'saadparwaiz1/cmp_luasnip',
+            -- 'saadparwaiz1/cmp_luasnip',	-- for autocompletion
             -- 'hrsh7th/cmp-nvim-lsp-signature-help',
             -- 'hrsh7th/cmp-nvim-lua',
 		},
@@ -104,9 +104,9 @@ return {
 
 
 	{
-			'L3MON4D3/LuaSnip',
+			'L3MON4D3/LuaSnip',		-- snippet engine
 			version = "v2.*",
-			dependencies = { 'rafamadriz/friendly-snippets' },
+			dependencies = { 'rafamadriz/friendly-snippets' },	-- useful snippets
 			build = "make install_jsregexp",
 			event = "InsertEnter"
 	},
