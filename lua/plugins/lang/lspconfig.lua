@@ -30,25 +30,25 @@ local on_attach = function(client, bufnr)
 		keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)	-- Show lsp type definitions
 
 		opts.desc = "See available code actions"
-		keymap.set({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, opts)	-- see available code actions, in visual mode will apply
+		keymap.set({"n", "v"}, "<leader>ca", keymap.lsp.buf.code_action, opts)	-- see available code actions, in visual mode will apply
 
 		opts.desc = "Smart rename"
-		keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)	-- smart rename
+		keymap.set("n", "<leader>rn", keymap.lsp.buf.rename, opts)	-- smart rename
 
 		opts.desc = "Show buffer diagnostics"
 		keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)	-- Show diagnostics for file
 
 		opts.desc = "Show line diagnostics"
-		keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)	-- Show diagnostics for line
+		keymap.set("n", "<leader>d", keymap.diagnostic.open_float, opts)	-- Show diagnostics for line
 
 		opts.desc = "Go to previous diagnostic"
-		keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)	-- jump to previous diagnostic in buffer
+		keymap.set("n", "[d", keymap.diagnostic.goto_prev, opts)	-- jump to previous diagnostic in buffer
 
 		opts.desc = "Go to next diagnostic"
-		keymap.set("n", "]d", vim.diagnostic.goto_next, opts)	-- jump to next diagnostic in buffer
+		keymap.set("n", "]d", keymap.diagnostic.goto_next, opts)	-- jump to next diagnostic in buffer
 
 		opts.desc = "Show documentation for what is under cursor"
-		keymap.set("n", "K", vim.lsp.buf.hover, opts)	-- show ducumentation for what is under cursor
+		keymap.set("n", "K", keymap.lsp.buf.hover, opts)	-- show ducumentation for what is under cursor
 
 		opts.desc = "Restart LSP"
 		keymap.set("n", "<leader>rs", "<cmd>LspRestart<CR>", opts)	-- mapping to restart lsp if necessary
@@ -59,7 +59,7 @@ end
 local signs = { Error = icons.Error, Warn = icons.Warning, Hint = icons.Hint, Info = icons.Information }
 for type, icon in pairs(signs) do
     local hl = 'DiagnosticSign' .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+    keymap.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
 end
 
 
@@ -157,6 +157,7 @@ require('mason-lspconfig').setup({
 				'pyright',			-- Python Language Server
 				'clangd',			-- C/C++ Language Server
 				'sqls',				-- SQL Language Server
+				'gleam',			-- gleam Language Server
 
 				-- Web Development
 				'html',				-- HTML Language Server
