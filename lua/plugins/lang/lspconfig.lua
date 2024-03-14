@@ -59,7 +59,7 @@ end
 local signs = { Error = icons.Error, Warn = icons.Warning, Hint = icons.Hint, Info = icons.Information }
 for type, icon in pairs(signs) do
     local hl = 'DiagnosticSign' .. type
-    keymap.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
 end
 
 
