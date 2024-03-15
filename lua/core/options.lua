@@ -3,9 +3,12 @@ local opt = vim.opt
 
 -- Tab / Indentation
 opt.tabstop = 4
+opt.shiftwidth = 4
+opt.softtabstop = 4
+opt.showtabline = 0
+opt.expandtab = true  -- Convert tabs to spaces
 opt.smartindent = true
-opt.wrap = false					-- Display lines as one long line 
-
+opt.wrap = false    -- display lines as one long line
 
 -- Search
 opt.incsearch = true
