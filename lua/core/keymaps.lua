@@ -12,10 +12,6 @@ keymap.set("n", "<leader>m", ":NvimTreeFocus<CR>", { noremap = true, silent = tr
 keymap.set("n", "<leader>f", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
 
--- Space as leader
-keymap.set('n', '<Space>', '', opts)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
 
 -- Disable netrw
 vim.g.loaded_netrw = 1
