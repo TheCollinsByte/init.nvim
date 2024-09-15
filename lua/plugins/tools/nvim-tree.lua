@@ -1,9 +1,4 @@
-local status_ok, nvim_tree = pcall(require, 'nvim-tree')
-
-if not status_ok then
-	return
-end
-
+local nvim_tree = require('nvim-tree')
 local icons = require('lib.icons')
 
 local function on_attach(bufnr)
@@ -54,8 +49,8 @@ nvim_tree.setup({
                 default = icons.documents.File,
                 symlink = icons.documents.SymLink,
                 folder = {
-                    arrow_open = icons.ui.ArrowOpen,
-                    arrow_closed = icons.ui.ArrowClosed,
+                    arrow_open = icons.ui.ArrowClosed,
+                    arrow_closed = icons.ui.ArrowOpen,
                     default = icons.documents.Folder,
                     open = icons.documents.OpenFolder,
                     empty = icons.documents.FolderEmpty,
@@ -87,7 +82,7 @@ nvim_tree.setup({
     update_focused_file = { enable = true, update_cwd = true, ignore_list = {} },
     git = { enable = true, ignore = true, timeout = 500 },
     view = {
-        width = 40,
+        width = 50,
         side = 'left',
         adaptive_size = true,
         number = false,
