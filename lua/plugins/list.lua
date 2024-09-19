@@ -150,6 +150,13 @@ return {
 		config = load_config('tools.obsidian'),
     },
 
+    {
+        "github/copilot.vim",
+        lazy = true,
+        config = load_config('tools.copilot'),
+        event = "InsertEnter",
+    },
+
 
 	-- Telescope
 	{
