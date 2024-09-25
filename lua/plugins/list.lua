@@ -151,10 +151,11 @@ return {
     },
 
     {
-        "github/copilot.vim",
+        'Exafunction/codeium.vim',
         lazy = true,
-        config = load_config('tools.copilot'),
-        event = "InsertEnter",
+        config = load_config('tools.codeium'),
+        event = "BufEnter",
+        codeium_enabled = true,
     },
 
 
