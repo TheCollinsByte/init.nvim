@@ -1,58 +1,107 @@
-local status_ok, cmp = pcall(require, 'cmp')
-if not status_ok then
-		return
-end
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+
+require('luasnip/loaders/from_vscode').lazy_load()
+
+local icons = require('lib.icons')
+local kind_icons = icons.kind
+vim.api.nvim_set_hl(0, 'CmpItemKindcodeium', { fg = '#6CC644' })
 
 cmp.setup({
+    completion = {
+        completeopt = 'menu,menuone,preview,noselect',
+    },
     snippet = {
-      expand = function(args)
-        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-      end,
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
+    },
+    mapping = {
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
+        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i', 'c' }),
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        ['<C-y>'] = cmp.config.disable,
+        ['<C-c>'] = cmp.mapping({
+            i = cmp.mapping.abort(),
+            c = cmp.mapping.close(),
+        }),
+        ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false,
+        }),
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expandable() then
+                luasnip.expand()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+    },
+    formatting = {
+        fields = { 'kind', 'abbr', 'menu' },
+        expandable_indicator = true,
+        format = function(entry, vim_item)
+            -- Kind icons
+            vim_item.kind = kind_icons[vim_item.kind]
+
+            if entry.source.name == 'codeium_enabled' then
+                vim_item.kind = icons.git.Octoface
+                vim_item.kind_hl_group = 'CmpItemKindcodeium'
+            end
+
+            vim_item.menu = ({
+                codeium = '[codeium]',
+                nvim_lsp = '[LSP]',
+                luasnip = '[Snippet]',
+                buffer = '[Buffer]',
+                path = '[Path]',
+            })[entry.source.name]
+            return vim_item
+        end,
+    },
+
+    sources = {
+        { name = 'codeium' },
+        { name = 'nvim_lsp' },
+        { name = 'path' },
+        { name = 'nvim_lua' },
+        { name = 'luasnip', keyword_length = 2 },
+        { name = 'buffer', keyword_length = 3 },
+        { name = 'lazydev', group_index = 0 },
+    },
+    confirm_opts = {
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = false,
     },
     window = {
-      -- completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
+        documentation = {
+            border = 'rounded',
+            winhighlight = 'NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None',
+        },
+        completion = {
+            border = 'rounded',
+            winhighlight = 'NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None',
+        },
+        scrollbar = true,
     },
-    mapping = cmp.mapping.preset.insert({
-      ['<C-k>'] = cmp.mapping.select_prev_item(),	-- previous suggestion
-      ['<C-j>'] = cmp.mapping.select_next_item(),	-- next suggestion
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),	-- show completion suggestions
-      ['<C-e>'] = cmp.mapping.abort(),		-- close completion window
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    }),
-    sources = cmp.config.sources({
-      { name = 'luasnip' }, -- snippets
-      { name = 'nvim_lsp' },
-    }, {
-      { name = 'buffer' },	-- text within current buffer
-    })
-  })
-
-  -- Set configuration for specific filetype.
-  cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-      { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-    }, {
-      { name = 'buffer' },
-    })
-  })
-
-  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-      { name = 'buffer' }
-    }
-  })
-
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    })
-  })
+    experimental = {
+        ghost_text = true,
+    },
+})
