@@ -76,6 +76,11 @@ return {
 		event = { 'BufReadPre', 'BufNewFile' },
 	},
 
+    {
+        'mfussenegger/nvim-jdtls',
+        config = load_config('lang.jdtls'),
+    },
+
 	{
 		  'nvim-java/nvim-java',
 		  dependencies = {
